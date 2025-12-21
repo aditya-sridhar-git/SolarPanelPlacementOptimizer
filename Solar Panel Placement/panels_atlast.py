@@ -7,6 +7,8 @@ import numpy as np
 import math
 import glob
 from shapely.geometry import Polygon
+import sys  # <-- ADDED
+import os  # <-- ADDED
 
 zoom = 20
 tileSize = 256
@@ -48,7 +50,7 @@ def solar_panel_params():
     return panel_lens, panel_wids, length_s, width, angle
 
 
-def contours_canny(cnts):
+def contours_canny(cnts, canny_contours, edged, canny_polygons): # Added params
     cv2.drawContours(canny_contours, cnts, -1, 255, 1)
 
     # Removing the contours detected inside the roof
@@ -71,7 +73,7 @@ def contours_canny(cnts):
             cv2.polylines(canny_polygons, [pts], True, 0)
 
 
-def contours_img(cnts):
+def contours_img(cnts, image_contours, edged, image_polygons): # Added params
     cv2.drawContours(image_contours, cnts, -1, 255, 1)
 
     # Removing the contours detected inside the roof
@@ -166,7 +168,9 @@ def createLineIterator(P1, P2, img):
     return itbuffer
 
 
-def panel_rotation(panels_series, solar_roof_area):
+# --- MODIFIED FUNCTION ---
+# Added new_image, high_reso_orig, and fname_for_saving as arguments
+def panel_rotation(panels_series, solar_roof_area, new_image, high_reso_orig, fname_for_saving, pl, pw, l, w, solar_angle):
 
     high_reso = cv2.pyrUp(solar_roof_area)
     rows, cols = high_reso.shape
@@ -234,87 +238,130 @@ def panel_rotation(panels_series, solar_roof_area):
 
         # Number of Solar Panels in series (3/4/5)
         panels_series = panels_series - 1
+        
+    # --- FIXED SAVING ---
+    # Create the 'results' directory if it doesn't exist
+    if not os.path.exists('results'):
+        os.makedirs('results')
+
+    output_filename = os.path.join('results', 'output_' + fname_for_saving)
+    panels_filename = os.path.join('results', 'panels_' + fname_for_saving)
+
     result = Image.fromarray(high_reso_orig)
     resut_2 = Image.fromarray(high_reso_new)
-    result.save('output' + fname )
-    resut_2.save('panels' + fname)
+    
+    print(f"Saving output to: {output_filename}")
+    result.save(output_filename)
+    print(f"Saving panels to: {panels_filename}")
+    resut_2.save(panels_filename)
+    
     plt.figure()
     plt.axis('off')
+    plt.title("Final Output with Panels")
     plt.imshow(high_reso_orig)
     plt.figure()
     plt.axis('off')
+    plt.title("Panels on White Background")
     plt.imshow(high_reso_new)
-    plt.show()
+    # plt.show() # This is already called in main
 
 
 if __name__ == "__main__":
-    images = glob.glob('1.jpg')
-    # latitude = ??
-    # pl, pw, l, w, solar_angle = solar_panel_params()
-    # length, width = pixels_per_mm(latitude)
+    # --- START OF FIX ---
+    # Read image path from command line
+    if len(sys.argv) < 2:
+        print("Error: Please provide an image path.")
+        print("Usage: python3 \"Solar Panel Placement/panels_atlast.py\" testcases/5.jpg")
+        sys.exit(1) # Exit the script if no image is given
 
-    for fname in images:
-    	# pl = No of panels together as length commonside, pw = Same as for pw here w = width
-    	# l = Length of panel in mm, w = Width of panel in mm
-    	# solar_angle = Angle for rotation
-        pl, pw, l, w, solar_angle = 4, 1, 8, 5, 30
-        image = cv2.imread(fname)
-        img = cv2.pyrDown(image)
-        print(img.shape)
-        n_white_pix = np.sum(img==255)
-        print(n_white_pix)
-        # Upscaling of Image
-        high_reso_orig = cv2.pyrUp(image)
-
-        # White blank image for contours of Canny Edge Image
-        canny_contours = white_image(image)
-        # White blank image for contours of original image
-        image_contours = white_image(image)
-
-        # White blank images removing rooftop's obstruction
-        image_polygons = grays(canny_contours)
-        canny_polygons = grays(canny_contours)
-
-        # Gray Image
-        grayscale = grays(image)
-        plt.figure()
-        plt.title('grayscale')
-        plt.imshow(image, cmap='gray')
-        # Edge Sharpened Image
-        sharp_image = sharp(grayscale)
-        plt.figure()
-        plt.title('sharp_image')
-        plt.imshow(sharp_image, cmap='gray')
+    fname = sys.argv[1] # This will be 'testcases/5.jpg'
+    base_fname = os.path.basename(fname) # This will be '5.jpg'
+    
+    # pl = No of panels together as length commonside, pw = Same as for pw here w = width
+    # l = Length of panel in mm, w = Width of panel in mm
+    # solar_angle = Angle for rotation
+    pl, pw, l, w, solar_angle = 4, 1, 8, 5, 30
+    
+    image = cv2.imread(fname)
+    
+    # Check if the image loaded correctly
+    if image is None:
+        print(f"Error: Could not load image from path: {fname}")
+        sys.exit(1)
         
-        # Canny Edge
-        edged = cv2.Canny(sharp_image, 180, 240)
-        plt.figure()
-        plt.title('edge_image')
-        plt.imshow(sharp_image, cmap='gray')        
-        # Otsu Threshold (Automatic Threshold)
-        thresh = cv2.threshold(sharp_image, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
-        plt.figure()
-        plt.title('Threshold_image')
-        plt.imshow(sharp_image, cmap='gray')
-        # Contours in Original Image
-        contours_img(cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2])
-        # Contours in Canny Edge Image
-        contours_canny(cv2.findContours(edged, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2])
+    print(f"Processing image: {fname}...")
+    
+    # --- END OF ORIGINAL LOOP ---
+    # All code from here was inside the 'for' loop, now un-indented
+    
+    img = cv2.pyrDown(image)
+    print(f"Image shape: {img.shape}")
+    n_white_pix = np.sum(img==255)
+    print(f"White pixels: {n_white_pix}")
+    # Upscaling of Image
+    high_reso_orig = cv2.pyrUp(image)
 
-        # Optimum place for placing Solar Panels
-        solar_roof = cv2.bitwise_and(image_polygons, canny_polygons)
-        plt.figure()
-        plt.title('solar_roof_area')
-        plt.imshow(solar_roof, cmap='gray')
-        n_white_pix = np.sum(solar_roof==255)
-        print(n_white_pix)
-        print(solar_roof.shape)
-        new_image = white_image(image)
-        plt.figure()
-        plt.title('new_image')
-        plt.imshow(new_image, cmap='gray')
-        print(new_image.shape)
-        # Rotation of Solar Panels
-        panel_rotation(pl, solar_roof)
-        
-        plt.show()
+    # White blank image for contours of Canny Edge Image
+    canny_contours = white_image(image)
+    # White blank image for contours of original image
+    image_contours = white_image(image)
+
+    # White blank images removing rooftop's obstruction
+    image_polygons = grays(canny_contours)
+    canny_polygons = grays(canny_contours)
+
+    # Gray Image
+    grayscale = grays(image)
+    plt.figure()
+    plt.title('grayscale')
+    plt.imshow(image, cmap='gray')
+    
+    # Edge Sharpened Image
+    sharp_image = sharp(grayscale)
+    plt.figure()
+    plt.title('sharp_image')
+    plt.imshow(sharp_image, cmap='gray')
+    
+    # Canny Edge
+    edged = cv2.Canny(sharp_image, 180, 240)
+    plt.figure()
+    plt.title('edge_image')
+    plt.imshow(edged, cmap='gray') # Changed to show 'edged'
+    
+    # Otsu Threshold (Automatic Threshold)
+    thresh = cv2.threshold(sharp_image, 0, 255, cv2.THRESH_BINARY | cv2.THRESH_OTSU)[1]
+    plt.figure()
+    plt.title('Threshold_image')
+    plt.imshow(thresh, cmap='gray') # Changed to show 'thresh'
+    
+    # Contours in Original Image
+    # NOTE: Original code had a bug, findContours returns (contours, hierarchy) in OpenCV 3/4
+    contours_img_list = cv2.findContours(thresh, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2]
+    contours_img(contours_img_list, image_contours, edged, image_polygons)
+    
+    # Contours in Canny Edge Image
+    contours_canny_list = cv2.findContours(edged, cv2.RETR_TREE, cv2.CHAIN_APPROX_SIMPLE)[-2]
+    contours_canny(contours_canny_list, canny_contours, edged, canny_polygons)
+
+    # Optimum place for placing Solar Panels
+    solar_roof = cv2.bitwise_and(image_polygons, canny_polygons)
+    plt.figure()
+    plt.title('solar_roof_area')
+    plt.imshow(solar_roof, cmap='gray')
+    n_white_pix = np.sum(solar_roof==255)
+    print(f"Solar roof white pixels: {n_white_pix}")
+    print(f"Solar roof shape: {solar_roof.shape}")
+    
+    new_image = white_image(image)
+    plt.figure()
+    plt.title('new_image')
+    plt.imshow(new_image, cmap='gray')
+    print(f"New image shape: {new_image.shape}")
+    
+    # Rotation of Solar Panels
+    # --- MODIFIED CALL ---
+    # Pass the extra arguments
+    panel_rotation(pl, solar_roof, new_image, high_reso_orig, base_fname, pl, pw, l, w, solar_angle)
+    
+    print("Showing all plots. Close the pop-up windows to exit.")
+    plt.show()

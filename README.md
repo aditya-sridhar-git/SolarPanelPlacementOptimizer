@@ -1,7 +1,7 @@
-Input Rooftop Image
+Input Rooftop Image<br>
 <img width="296" height="479" alt="image" src="https://github.com/user-attachments/assets/015d1834-5ea7-4ee5-84bf-014e731ef6e2" />
 
-Output rooftop image
+Output rooftop image<br>
 <img width="160" height="262" alt="image" src="https://github.com/user-attachments/assets/95858066-df56-4024-8186-c64d860e277e" />
 
 

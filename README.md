@@ -2,7 +2,8 @@
 
 An AI-powered tool that analyzes satellite/rooftop images to determine optimal solar panel placement, calculate energy production, and visualize environmental impact.
 
-![Solar Panel Analysis Demo](https://github.com/user-attachments/assets/015d1834-5ea7-4ee5-84bf-014e731ef6e2)
+<img width="1895" height="940" alt="image" src="https://github.com/user-attachments/assets/0da7b7fa-2214-4016-9547-a6e1c9165a92" />
+
 
 ## ✨ Features
 

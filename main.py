@@ -137,10 +137,20 @@ def run_complete_analysis(image_path, location_config=None):
     print("STEP 1: BUILDING DETECTION")
     print("-" * 70)
 
+    # Adjust min_area based on image size
+    image_area = h * w
+    if image_area < 10000:  # Very small image
+        min_area = 50
+        max_area = 5000
+        print(f"⚠️  Small image detected ({w}x{h}), adjusting detection parameters...")
+    else:
+        min_area = 500
+        max_area = 50000
+
     detector = EnhancedBuildingDetector(
         config={
-            "min_area": 500,  # Adjust based on your image
-            "max_area": 50000,
+            "min_area": min_area,
+            "max_area": max_area,
         }
     )
 

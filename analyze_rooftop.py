@@ -61,6 +61,8 @@ class RooftopDetector:
     
     def __init__(self, config: Dict = None):
         self.config = {**DEFAULT_CONFIG, **(config or {})}
+        # Ensure we can detect smaller buildings
+        self.config['min_building_area'] = min(300, self.config['min_building_area'])
     
     def detect_rooftops(self, image: np.ndarray) -> List[Dict]:
         """
@@ -79,22 +81,24 @@ class RooftopDetector:
         mean_intensity = np.mean(gray)
         white_ratio = np.sum(gray > 200) / gray.size
         
+        valid_contours = []
+        
         if white_ratio > 0.05 and white_ratio < 0.8:
             # This appears to be a pre-segmented roof mask
             # Use simple thresholding
             _, binary = cv2.threshold(gray, 127, 255, cv2.THRESH_BINARY)
             contours, _ = cv2.findContours(binary, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
             
-            valid_contours = []
             for cnt in contours:
                 area = cv2.contourArea(cnt)
                 if area > 100:  # Minimum area threshold
                     valid_contours.append(cnt)
         else:
             # Raw satellite image - use edge detection approach
+            # First pass: Standard detection
             blur = cv2.bilateralFilter(gray, 9, 75, 75)
-            
             all_contours = []
+            
             for scale in [0.75, 1.0, 1.25]:
                 h, w = blur.shape
                 resized = cv2.resize(blur, (int(w * scale), int(h * scale)))
@@ -107,6 +111,49 @@ class RooftopDetector:
                     if self.config['min_building_area'] < area < self.config['max_building_area']:
                         all_contours.append(scaled_cnt)
             
+            # Second pass: If nothing found, try aggressive settings (lower thresholds)
+            if not all_contours:
+                print("   ⚠️ Standard detection failed. Retrying with aggressive parameters...")
+                # Less blur to keep weak edges
+                blur_agg = cv2.GaussianBlur(gray, (5, 5), 0)
+                
+                # Check multiple threshold levels
+                for lower, upper in [(30, 100), (20, 60), (10, 40)]:
+                    edges_agg = cv2.Canny(blur_agg, lower, upper)
+                    # Close gaps
+                    kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (3, 3))
+                    edges_closed = cv2.morphologyEx(edges_agg, cv2.MORPH_CLOSE, kernel)
+                    
+                    contours_agg, _ = cv2.findContours(edges_closed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                    
+                    for cnt in contours_agg:
+                        area = cv2.contourArea(cnt)
+                        # More permissive area constraints
+                        if 300 < area < self.config['max_building_area']:
+                            all_contours.append(cnt)
+                    
+                    if all_contours:  # Stop if we found something
+                        break
+            
+            # Third pass: Texture/Intensity segmentation (Gradient) for very low contrast
+            if not all_contours:
+                 print("   ⚠️ Edge detection failed. Retrying with gradient analysis...")
+                 grad_x = cv2.Sobel(gray, cv2.CV_16S, 1, 0, ksize=3)
+                 grad_y = cv2.Sobel(gray, cv2.CV_16S, 0, 1, ksize=3)
+                 abs_grad_x = cv2.convertScaleAbs(grad_x)
+                 abs_grad_y = cv2.convertScaleAbs(grad_y)
+                 grad = cv2.addWeighted(abs_grad_x, 0.5, abs_grad_y, 0.5, 0)
+                 
+                 _, grad_thresh = cv2.threshold(grad, 40, 255, cv2.THRESH_BINARY)
+                 kernel = cv2.getStructuringElement(cv2.MORPH_RECT, (5, 5))
+                 closed = cv2.morphologyEx(grad_thresh, cv2.MORPH_CLOSE, kernel)
+                 contours_grad, _ = cv2.findContours(closed, cv2.RETR_EXTERNAL, cv2.CHAIN_APPROX_SIMPLE)
+                 
+                 for cnt in contours_grad:
+                        area = cv2.contourArea(cnt)
+                        if 500 < area < self.config['max_building_area']:
+                            all_contours.append(cnt)
+
             valid_contours = self._non_max_suppression(all_contours)
         
         # Build rooftop info list

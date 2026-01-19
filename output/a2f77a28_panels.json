@@ -1,0 +1,87 @@
+{
+  "timestamp": "2026-01-19T18:26:43.882153",
+  "input_image": "uploads\\a2f77a28.jpeg",
+  "image_size": {
+    "width": 307,
+    "height": 417
+  },
+  "config": {
+    "latitude": 28.6139,
+    "longitude": 77.209,
+    "pixel_to_meter": 0.15,
+    "panel_width_m": 1.0,
+    "panel_height_m": 1.7,
+    "panel_efficiency": 0.2,
+    "panel_power_w": 300,
+    "min_building_area": 500,
+    "max_building_area": 50000,
+    "edge_margin_percent": 0.1,
+    "panel_spacing_m": 0.1
+  },
+  "summary": {
+    "rooftop_count": 1,
+    "total_panels": 1,
+    "total_capacity_kw": 0.3,
+    "total_annual_kwh": 576.0
+  },
+  "rooftops": [
+    {
+      "rooftop_id": 1,
+      "roof_area_m2": 7.14375,
+      "usable_area_m2": 7.02,
+      "roof_orientation_degrees": 43.72697067260742,
+      "obstacles_detected": 0,
+      "panel_count": 1,
+      "panels": [
+        {
+          "panel_id": 1,
+          "center": {
+            "x": 245.5,
+            "y": 73.0
+          },
+          "corners": [
+            {
+              "x": 243.6,
+              "y": 67.03
+            },
+            {
+              "x": 251.55,
+              "y": 74.63
+            },
+            {
+              "x": 247.4,
+              "y": 78.97
+            },
+            {
+              "x": 239.45,
+              "y": 71.37
+            }
+          ],
+          "rotation_degrees": 43.73,
+          "dimensions_pixels": {
+            "width": 11,
+            "height": 6
+          },
+          "dimensions_meters": {
+            "width": 1.65,
+            "height": 0.9
+          }
+        }
+      ],
+      "energy": {
+        "system_capacity_kw": 0.3,
+        "total_panel_area_m2": 1.7,
+        "estimated_annual_kwh": 576.0,
+        "estimated_monthly_kwh": 48.0,
+        "estimated_daily_kwh": 1.6,
+        "co2_offset_kg_year": 473.0
+      },
+      "suitability": {
+        "score": 15,
+        "rating": "Poor",
+        "max_score": 100,
+        "obstacles_found": 0
+      }
+    }
+  ]
+}

@@ -1,0 +1,903 @@
+{
+  "timestamp": "2026-01-19T17:57:18.449358",
+  "input_image": "uploads\\c89be97d.jpg",
+  "image_size": {
+    "width": 53,
+    "height": 90
+  },
+  "config": {
+    "latitude": 28.6139,
+    "longitude": 77.209,
+    "pixel_to_meter": 0.15,
+    "panel_width_m": 1.0,
+    "panel_height_m": 1.7,
+    "panel_efficiency": 0.2,
+    "panel_power_w": 300,
+    "min_building_area": 500,
+    "max_building_area": 50000,
+    "edge_margin_percent": 0.1,
+    "panel_spacing_m": 0.1
+  },
+  "summary": {
+    "rooftop_count": 1,
+    "total_panels": 25,
+    "total_capacity_kw": 7.5,
+    "total_annual_kwh": 14409.0
+  },
+  "rooftops": [
+    {
+      "rooftop_id": 1,
+      "roof_area_m2": 84.42,
+      "usable_area_m2": 76.99499999999999,
+      "roof_orientation_degrees": 90.0,
+      "obstacles_detected": 3,
+      "panel_count": 25,
+      "panels": [
+        {
+          "panel_id": 1,
+          "center": {
+            "x": 10.0,
+            "y": 17.5
+          },
+          "corners": [
+            {
+              "x": 15.5,
+              "y": 14.5
+            },
+            {
+              "x": 15.5,
+              "y": 20.5
+            },
+            {
+              "x": 4.5,
+              "y": 20.5
+            },
+            {
+              "x": 4.5,
+              "y": 14.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 2,
+          "center": {
+            "x": 17.0,
+            "y": 17.5
+          },
+          "corners": [
+            {
+              "x": 22.5,
+              "y": 14.5
+            },
+            {
+              "x": 22.5,
+              "y": 20.5
+            },
+            {
+              "x": 11.5,
+              "y": 20.5
+            },
+            {
+              "x": 11.5,
+              "y": 14.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 3,
+          "center": {
+            "x": 24.0,
+            "y": 17.5
+          },
+          "corners": [
+            {
+              "x": 29.5,
+              "y": 14.5
+            },
+            {
+              "x": 29.5,
+              "y": 20.5
+            },
+            {
+              "x": 18.5,
+              "y": 20.5
+            },
+            {
+              "x": 18.5,
+              "y": 14.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 4,
+          "center": {
+            "x": 31.0,
+            "y": 17.5
+          },
+          "corners": [
+            {
+              "x": 36.5,
+              "y": 14.5
+            },
+            {
+              "x": 36.5,
+              "y": 20.5
+            },
+            {
+              "x": 25.5,
+              "y": 20.5
+            },
+            {
+              "x": 25.5,
+              "y": 14.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 5,
+          "center": {
+            "x": 38.0,
+            "y": 17.5
+          },
+          "corners": [
+            {
+              "x": 43.5,
+              "y": 14.5
+            },
+            {
+              "x": 43.5,
+              "y": 20.5
+            },
+            {
+              "x": 32.5,
+              "y": 20.5
+            },
+            {
+              "x": 32.5,
+              "y": 14.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 6,
+          "center": {
+            "x": 45.0,
+            "y": 17.5
+          },
+          "corners": [
+            {
+              "x": 50.5,
+              "y": 14.5
+            },
+            {
+              "x": 50.5,
+              "y": 20.5
+            },
+            {
+              "x": 39.5,
+              "y": 20.5
+            },
+            {
+              "x": 39.5,
+              "y": 14.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 7,
+          "center": {
+            "x": 10.0,
+            "y": 29.5
+          },
+          "corners": [
+            {
+              "x": 15.5,
+              "y": 26.5
+            },
+            {
+              "x": 15.5,
+              "y": 32.5
+            },
+            {
+              "x": 4.5,
+              "y": 32.5
+            },
+            {
+              "x": 4.5,
+              "y": 26.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 8,
+          "center": {
+            "x": 17.0,
+            "y": 29.5
+          },
+          "corners": [
+            {
+              "x": 22.5,
+              "y": 26.5
+            },
+            {
+              "x": 22.5,
+              "y": 32.5
+            },
+            {
+              "x": 11.5,
+              "y": 32.5
+            },
+            {
+              "x": 11.5,
+              "y": 26.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 9,
+          "center": {
+            "x": 24.0,
+            "y": 29.5
+          },
+          "corners": [
+            {
+              "x": 29.5,
+              "y": 26.5
+            },
+            {
+              "x": 29.5,
+              "y": 32.5
+            },
+            {
+              "x": 18.5,
+              "y": 32.5
+            },
+            {
+              "x": 18.5,
+              "y": 26.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 10,
+          "center": {
+            "x": 10.0,
+            "y": 41.5
+          },
+          "corners": [
+            {
+              "x": 15.5,
+              "y": 38.5
+            },
+            {
+              "x": 15.5,
+              "y": 44.5
+            },
+            {
+              "x": 4.5,
+              "y": 44.5
+            },
+            {
+              "x": 4.5,
+              "y": 38.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 11,
+          "center": {
+            "x": 17.0,
+            "y": 41.5
+          },
+          "corners": [
+            {
+              "x": 22.5,
+              "y": 38.5
+            },
+            {
+              "x": 22.5,
+              "y": 44.5
+            },
+            {
+              "x": 11.5,
+              "y": 44.5
+            },
+            {
+              "x": 11.5,
+              "y": 38.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 12,
+          "center": {
+            "x": 24.0,
+            "y": 41.5
+          },
+          "corners": [
+            {
+              "x": 29.5,
+              "y": 38.5
+            },
+            {
+              "x": 29.5,
+              "y": 44.5
+            },
+            {
+              "x": 18.5,
+              "y": 44.5
+            },
+            {
+              "x": 18.5,
+              "y": 38.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 13,
+          "center": {
+            "x": 45.0,
+            "y": 41.5
+          },
+          "corners": [
+            {
+              "x": 50.5,
+              "y": 38.5
+            },
+            {
+              "x": 50.5,
+              "y": 44.5
+            },
+            {
+              "x": 39.5,
+              "y": 44.5
+            },
+            {
+              "x": 39.5,
+              "y": 38.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 14,
+          "center": {
+            "x": 17.0,
+            "y": 53.5
+          },
+          "corners": [
+            {
+              "x": 22.5,
+              "y": 50.5
+            },
+            {
+              "x": 22.5,
+              "y": 56.5
+            },
+            {
+              "x": 11.5,
+              "y": 56.5
+            },
+            {
+              "x": 11.5,
+              "y": 50.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 15,
+          "center": {
+            "x": 24.0,
+            "y": 53.5
+          },
+          "corners": [
+            {
+              "x": 29.5,
+              "y": 50.5
+            },
+            {
+              "x": 29.5,
+              "y": 56.5
+            },
+            {
+              "x": 18.5,
+              "y": 56.5
+            },
+            {
+              "x": 18.5,
+              "y": 50.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 16,
+          "center": {
+            "x": 31.0,
+            "y": 53.5
+          },
+          "corners": [
+            {
+              "x": 36.5,
+              "y": 50.5
+            },
+            {
+              "x": 36.5,
+              "y": 56.5
+            },
+            {
+              "x": 25.5,
+              "y": 56.5
+            },
+            {
+              "x": 25.5,
+              "y": 50.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 17,
+          "center": {
+            "x": 38.0,
+            "y": 53.5
+          },
+          "corners": [
+            {
+              "x": 43.5,
+              "y": 50.5
+            },
+            {
+              "x": 43.5,
+              "y": 56.5
+            },
+            {
+              "x": 32.5,
+              "y": 56.5
+            },
+            {
+              "x": 32.5,
+              "y": 50.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 18,
+          "center": {
+            "x": 45.0,
+            "y": 53.5
+          },
+          "corners": [
+            {
+              "x": 50.5,
+              "y": 50.5
+            },
+            {
+              "x": 50.5,
+              "y": 56.5
+            },
+            {
+              "x": 39.5,
+              "y": 56.5
+            },
+            {
+              "x": 39.5,
+              "y": 50.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 19,
+          "center": {
+            "x": 17.0,
+            "y": 65.5
+          },
+          "corners": [
+            {
+              "x": 22.5,
+              "y": 62.5
+            },
+            {
+              "x": 22.5,
+              "y": 68.5
+            },
+            {
+              "x": 11.5,
+              "y": 68.5
+            },
+            {
+              "x": 11.5,
+              "y": 62.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 20,
+          "center": {
+            "x": 24.0,
+            "y": 65.5
+          },
+          "corners": [
+            {
+              "x": 29.5,
+              "y": 62.5
+            },
+            {
+              "x": 29.5,
+              "y": 68.5
+            },
+            {
+              "x": 18.5,
+              "y": 68.5
+            },
+            {
+              "x": 18.5,
+              "y": 62.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 21,
+          "center": {
+            "x": 31.0,
+            "y": 65.5
+          },
+          "corners": [
+            {
+              "x": 36.5,
+              "y": 62.5
+            },
+            {
+              "x": 36.5,
+              "y": 68.5
+            },
+            {
+              "x": 25.5,
+              "y": 68.5
+            },
+            {
+              "x": 25.5,
+              "y": 62.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 22,
+          "center": {
+            "x": 38.0,
+            "y": 65.5
+          },
+          "corners": [
+            {
+              "x": 43.5,
+              "y": 62.5
+            },
+            {
+              "x": 43.5,
+              "y": 68.5
+            },
+            {
+              "x": 32.5,
+              "y": 68.5
+            },
+            {
+              "x": 32.5,
+              "y": 62.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 23,
+          "center": {
+            "x": 45.0,
+            "y": 65.5
+          },
+          "corners": [
+            {
+              "x": 50.5,
+              "y": 62.5
+            },
+            {
+              "x": 50.5,
+              "y": 68.5
+            },
+            {
+              "x": 39.5,
+              "y": 68.5
+            },
+            {
+              "x": 39.5,
+              "y": 62.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 24,
+          "center": {
+            "x": 17.0,
+            "y": 77.5
+          },
+          "corners": [
+            {
+              "x": 22.5,
+              "y": 74.5
+            },
+            {
+              "x": 22.5,
+              "y": 80.5
+            },
+            {
+              "x": 11.5,
+              "y": 80.5
+            },
+            {
+              "x": 11.5,
+              "y": 74.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        },
+        {
+          "panel_id": 25,
+          "center": {
+            "x": 24.0,
+            "y": 77.5
+          },
+          "corners": [
+            {
+              "x": 29.5,
+              "y": 74.5
+            },
+            {
+              "x": 29.5,
+              "y": 80.5
+            },
+            {
+              "x": 18.5,
+              "y": 80.5
+            },
+            {
+              "x": 18.5,
+              "y": 74.5
+            }
+          ],
+          "rotation_degrees": 90.0,
+          "dimensions_pixels": {
+            "width": 6,
+            "height": 11
+          },
+          "dimensions_meters": {
+            "width": 0.9,
+            "height": 1.65
+          }
+        }
+      ],
+      "energy": {
+        "system_capacity_kw": 7.5,
+        "total_panel_area_m2": 42.5,
+        "estimated_annual_kwh": 14409.0,
+        "estimated_monthly_kwh": 1201.0,
+        "estimated_daily_kwh": 39.5,
+        "co2_offset_kg_year": 11815.0
+      },
+      "suitability": {
+        "score": 85,
+        "rating": "Excellent",
+        "max_score": 100,
+        "obstacles_found": 3
+      }
+    }
+  ]
+}
